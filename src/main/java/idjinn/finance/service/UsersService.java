@@ -16,7 +16,7 @@ public class UsersService {
     private final UsersRepository usersRepository;
     private final PasswordService passwordService;
 
-    public Optional<UserDTO> findAccountById(UUID id) {
+    public Optional<UserDTO> findUserById(UUID id) {
         return usersRepository.findUserById(id).map(UserDTO::fromUser);
     }
 
