@@ -5,13 +5,13 @@ import idjinn.finance.util.Strings;
 
 import java.util.UUID;
 
-public record UserDTO(
+public record UserResponseDTO(
         UUID Id,
         String Name,
         String Email
 ) {
-    public static UserDTO fromUser(final User user) {
-        return new UserDTO(
+    public static UserResponseDTO fromUser(final User user) {
+        return new UserResponseDTO(
                 user.getId(),
                 user.getName(),
                 Strings.maskEmail(user.getEmail())

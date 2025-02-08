@@ -1,10 +1,10 @@
 package idjinn.finance.util.errors.common;
 
 import idjinn.finance.util.errors.FinanceException;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 
 public class NotFoundException extends FinanceException {
     public NotFoundException(String message) {
-        super(HttpStatusCode.valueOf(404), message);
+        super(HttpStatus.NOT_FOUND, message);
     }
 }

@@ -1,7 +1,7 @@
 package idjinn.finance.service;
 
 import idjinn.finance.dto.users.CreateUserDTO;
-import idjinn.finance.dto.users.UserDTO;
+import idjinn.finance.dto.users.UserResponseDTO;
 import idjinn.finance.model.User;
 import idjinn.finance.repository.UsersRepository;
 import idjinn.finance.util.errors.FinanceException;
@@ -19,11 +19,11 @@ public class UsersService {
     private final UsersRepository usersRepository;
     private final PasswordService passwordService;
 
-    public Optional<UserDTO> findUserById(final @Valid UUID id) {
-        return usersRepository.findUserById(id).map(UserDTO::fromUser);
+    public Optional<UserResponseDTO> findUserById(final @Valid UUID id) {
+        return usersRepository.findUserById(id).map(UserResponseDTO::fromUser);
     }
 
-    public UserDTO createUser(final @Valid CreateUserDTO createUserDTO) {
+    public UserResponseDTO createUser(final @Valid CreateUserDTO createUserDTO) {
         final var existentUser = usersRepository.findUserByEmail(createUserDTO.getEmail());
         if (existentUser.isPresent())
             throw new FinanceException(HttpStatus.CONFLICT, "Email already exists");
@@ -36,6 +36,6 @@ public class UsersService {
         user.setPasswordHash(hashedPassword.hash());
 
         usersRepository.save(user);
-        return UserDTO.fromUser(user);
+        return UserResponseDTO.fromUser(user);
     }
 }
