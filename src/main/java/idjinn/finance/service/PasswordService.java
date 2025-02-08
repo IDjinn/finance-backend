@@ -10,10 +10,10 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 @Service
 public class PasswordService {
-    @Value("${passwords.pepper}")
+    @Value("${security.passwords.pepper}")
     private String PEPPER;
 
-    @Value("${passwords.cost}")
+    @Value("${security.passwords.cost}")
     private int COST;
 
     public HashedPassword hashPassword(final String password) {

@@ -1,6 +1,8 @@
 package idjinn.finance.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 import java.util.UUID;
@@ -15,11 +17,15 @@ public class User {
     private UUID id;
 
     @Column(name = "name", nullable = false)
+    @Schema(example = "John Doe")
     private String name;
 
     @Column(name = "email", nullable = false)
+    @Email
+    @Schema(example = "john.doe@gmail.com")
     private String email;
 
     @Column(name = "password_hash", nullable = false)
+    @Schema(hidden = true)
     private String passwordHash;
 }

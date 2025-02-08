@@ -1,4 +1,4 @@
-package idjinn.finance.dto.users;
+package idjinn.finance.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
