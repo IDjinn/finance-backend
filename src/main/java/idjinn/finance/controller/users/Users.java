@@ -36,6 +36,7 @@ public class Users {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User created", content = @Content(schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "409", description = "Email already exists", content = @Content)
     })
     @PostMapping("/create")
     public ResponseEntity<UserDTO> createAccount(@RequestBody @Valid final CreateUserDTO createUserDTO) {

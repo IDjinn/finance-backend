@@ -4,8 +4,10 @@ import idjinn.finance.dto.users.CreateUserDTO;
 import idjinn.finance.dto.users.UserDTO;
 import idjinn.finance.model.User;
 import idjinn.finance.repository.UsersRepository;
+import idjinn.finance.util.errors.FinanceException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,6 +24,10 @@ public class UsersService {
     }
 
     public UserDTO createUser(final @Valid CreateUserDTO createUserDTO) {
+        final var existentUser = usersRepository.findUserByEmail(createUserDTO.getEmail());
+        if (existentUser.isPresent())
+            throw new FinanceException(HttpStatus.CONFLICT, "Email already exists");
+
         final var user = new User();
         user.setName(createUserDTO.getUserName());
         user.setEmail(createUserDTO.getEmail());
