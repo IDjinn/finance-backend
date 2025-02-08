@@ -6,16 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class CreateUserDTO {
+public class LoginDTO {
     @NotBlank
-    @Size(min = 2, max = 12)
-    private String userName;
+    @Email
+    private String email;
 
     @NotBlank
     @Size(min = 8, max = 20)
     private String password;
-
-    @NotBlank
-    @Email
-    private String email;
 }

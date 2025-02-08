@@ -1,7 +1,8 @@
 package idjinn.finance.controller.users;
 
-import idjinn.finance.dto.users.UserDTO;
 import idjinn.finance.dto.users.CreateUserDTO;
+import idjinn.finance.dto.users.LoginDTO;
+import idjinn.finance.dto.users.UserDTO;
 import idjinn.finance.service.UsersService;
 import idjinn.finance.util.errors.FinanceException;
 import jakarta.validation.Valid;
@@ -27,5 +28,10 @@ public class Users {
     @PostMapping("/create")
     public UserDTO createAccount(@RequestBody @Valid final CreateUserDTO createUserDTO) {
         return usersService.createUser(createUserDTO);
+    }
+
+    @GetMapping("/login")
+    public UserDTO login(@RequestBody @Valid final LoginDTO loginDTO) {
+        return usersService.login(loginDTO);
     }
 }
