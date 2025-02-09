@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,6 +15,7 @@ import java.util.UUID;
         uniqueConstraints = @UniqueConstraint(columnNames = {"owner_id", "id"})
 )
 @Data
+@ToString(exclude = {"owner"})
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

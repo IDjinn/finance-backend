@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.UUID;
         name = "credit_cards",
         uniqueConstraints = @UniqueConstraint(columnNames = {"owner_id", "account_id", "uuid"})
 )
+@ToString(exclude = {"owner", "account"})
 public class CreditCard {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -1,5 +1,6 @@
 package idjinn.finance.dto.users;
 
+import idjinn.finance.util.auth.RoleName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,4 +23,7 @@ public class CreateUserDTO {
     @Email
     @Schema(example = "jhon.doe@gmail.com")
     private String email;
+
+    @NotBlank
+    private RoleName role;
 }

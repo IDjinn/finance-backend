@@ -27,7 +27,7 @@ public class PasswordService {
         final var result = BCrypt.verifyer().verify(peppered.toCharArray(), hashedPassword.toCharArray());
         if (result.validFormat && result.verified) return true;
 
-        log.error("Invalid hashed password: {}\n\n{}", hashedPassword, result);
+        log.error("Invalid hashed password: {}\n\n{}\n\nexpected: {}", hashedPassword, result, this.hashPassword(password));
         return false;
     }
 
