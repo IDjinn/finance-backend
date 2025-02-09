@@ -1,6 +1,7 @@
 package idjinn.finance.dto.users;
 
 import idjinn.finance.util.auth.RoleName;
+import idjinn.finance.util.validators.Password;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,11 +12,11 @@ import lombok.Data;
 public class CreateUserDTO {
     @NotBlank
     @Size(min = 2, max = 12)
-    @Schema(name = "Jhon Doe")
+    @Schema(example = "Jhon Doe")
     private String userName;
 
     @NotBlank
-    @Size(min = 8, max = 20)
+    @Password
     @Schema(example = "secretP4ssw0rd!")
     private String password;
 
@@ -24,6 +25,5 @@ public class CreateUserDTO {
     @Schema(example = "jhon.doe@gmail.com")
     private String email;
 
-    @NotBlank
     private RoleName role;
 }

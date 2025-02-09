@@ -11,9 +11,18 @@ hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.hibernate.ddl-auto=update
+
 # Security
 security.passwords.pepper=somereallybigpepperstring
 security.passwords.cost=12
+security.passwords.min=8
+security.passwords.max=20
+security.passwords.include_upper_case=true
+security.passwords.include_lower_case=true
+security.passwords.include_digit=true
+security.passwords.include_symbol=true
+
+
 security.jwt.issuer=finance.app
 security.jwt.secret=appsecret
 security.jwt.token_validity=3600000

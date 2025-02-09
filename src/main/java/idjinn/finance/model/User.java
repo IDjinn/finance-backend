@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 @Data
 @ToString(exclude = {"creditCards", "accounts", "roles"})
 public class User {
