@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class UsersController {
             @ApiResponse(responseCode = "200", description = "User found", content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
     })
+    @Cacheable("users") // TODO: cache invalidation
     @GetMapping("/{id}")
     @ResponseBody
     public UserResponseDTO getAccountByUUID(@PathVariable UUID id) {

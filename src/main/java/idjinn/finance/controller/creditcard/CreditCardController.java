@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class CreditCardController {
             @ApiResponse(responseCode = "201", description = "Credit Card found", content = @Content(schema = @Schema(implementation = CreditCardResponseDTO.class))),
             @ApiResponse(responseCode = "404", description = "Credit Card not found", content = @Content)
     })
+    @Cacheable("creditCards")
     @GetMapping("/{id}")
     public CreditCardResponseDTO getCreditCard(@PathVariable("id") @Valid final UUID id) {
         return creditCardsService.getCreditCard(id).map(CreditCardResponseDTO::fromCreditCard).orElseThrow(() -> new NotFoundException("Credit Card not found"));
